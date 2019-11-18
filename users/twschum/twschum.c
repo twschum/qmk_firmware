@@ -220,6 +220,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING(CODE_PASTE_MACRO);
             }
             return false;
+        case VIM_PASTE:
+            if (!record->event.pressed) {
+                SEND_STRING(VIM_PASTE_MACRO);
+            }
+            return false;
 
         #ifdef TWSCHUM_TAPPING_CTRL_PREFIX
         case EN_CTRL_SHORTCUTS:
