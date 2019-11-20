@@ -82,8 +82,8 @@ enum extra_keycodes {
 #define SALT_CMD_MACRO "sudo salt \\* cmd.run ''"SS_TAP(X_LEFT)
 #define LESS_PD_MACRO "sudo less /pipedream/cache/"
 // TODO mac vs linux
-#define CODE_PASTE_MACRO SS_LSFT("\n")"```"SS_LSFT("\n")SS_LALT("v")SS_LSFT("\n")"```"
-#define VIM_PASTE_MACRO SS_TAP(X_ESCAPE)":set paste\no"SS_LALT("v")SS_TAP(X_ESCAPE)":set nopaste\n"
+#define CODE_PASTE_MACRO SS_LSFT("\n")"```"SS_LSFT("\n")SS_LGUI("v")SS_LSFT("\n")"```"
+#define VIM_PASTE_MACRO SS_TAP(X_ESCAPE)":set paste\no"SS_LGUI("v")SS_TAP(X_ESCAPE)":set nopaste\n"
 
 
 /* PP_NARG macro returns the number of arguments passed to it.
