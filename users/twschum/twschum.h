@@ -77,6 +77,7 @@ enum extra_keycodes {
     LESS_PD, // macro
     CODE_PASTE, // macro
     VIM_PASTE, // macro
+    KEYCOUNT, // prints out how many keystrokes have happened
     KEYMAP_SAFE_RANGE, // range to start for the keymap
 };
 #define SALT_CMD_MACRO "sudo salt \\* cmd.run ''"SS_TAP(X_LEFT)

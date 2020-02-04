@@ -44,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // |------------------|--------|--------|--------|--------|--------|--------|--------|--------|--------||--------------|--------|--------||
     //
     // |---1.25---|---1.25---||---1.25---||--------2.75----------||---1.25---|------2.25--------||--------|--------|--------|--------|--------|
-          MO(_Fn),  KC_LALT,    KC_LGUI,         KC_SPC,           TT(_Nav),      MO(_Fn),       TG(_Num), TT(_Cfg), KC_LEFT, KC_DOWN, KC_RGHT
+          MO(_Fn),  KC_LALT,    KC_LGUI,         KC_SPC,           TT(_Nav),      MO(_Fn),       MO(_Num), TT(_Cfg), KC_LEFT, KC_DOWN, KC_RGHT
     // |----------|----------||----------||----------------------||----------|------------------||--------|--------|--------|--------|--------|
   ),
 
@@ -103,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   LAYOUT_b_4_10(
     _______,           XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,      TG_L0_RGB,      XXXXXXX,          XXXXXXX,   TO(_None),
     XXXXXXX,           XXXXXXX, XXXXXXX, XXXXXXX, RESET,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,      XXXXXXX,        XXXXXXX,          XXXXXXX,   RGB_HUD,
-    EN_CTRL_SHORTCUTS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TG_LAYER_RGB, RGB_MODE_PLAIN, RGB_MODE_FORWARD, KC_RSHIFT,
+    EN_CTRL_SHORTCUTS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KEYCOUNT, TG_LAYER_RGB, RGB_MODE_PLAIN, RGB_MODE_FORWARD, KC_RSHIFT,
     XXXXXXX,           XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MAKE, XXXXXXX, XXXXXXX,      RGB_TOG,        RGB_VAI,          RGB_HUI,
     XXXXXXX,           XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, RGB_SAD, RGB_VAD,      RGB_SAI
   ),

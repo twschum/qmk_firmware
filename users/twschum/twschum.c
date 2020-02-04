@@ -9,6 +9,7 @@ static bool timeout_is_active = false;
 static bool ctrl_shortcuts_enabled_g = false;
 //static bool B_down = 0; // TODO just use top bit from count
 //static int8_t B_count = 0;
+static uint32_t keystroke_count = 0;
 
 #define N_TAPPING_CTRL_KEYS 2
 static struct Tapping_ctrl_key_t special_keys_g[N_TAPPING_CTRL_KEYS] = {
@@ -28,6 +29,24 @@ static inline void clear_state_after_idle_timeout(void) {
         struct Tapping_ctrl_key_t* key = special_keys_g + i;
         repeat_send_keys(key->count, key->keycode);
         key->count = 0;
+    }
+}
+
+static inline void printint(uint32_t count) {
+    for (uint32_t i = 1000000000; i > 0; i /= 10) {
+        switch ((count / i) % 10) {
+            case 0: SEND_STRING("0"); break;
+            case 1: SEND_STRING("1"); break;
+            case 2: SEND_STRING("2"); break;
+            case 3: SEND_STRING("3"); break;
+            case 4: SEND_STRING("4"); break;
+            case 5: SEND_STRING("5"); break;
+            case 6: SEND_STRING("6"); break;
+            case 7: SEND_STRING("7"); break;
+            case 8: SEND_STRING("8"); break;
+            case 9: SEND_STRING("9"); break;
+            default: SEND_STRING("?"); break;
+        }
     }
 }
 
@@ -158,6 +177,11 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
  * process_record_keymap to be call by process_record_user in the vim addon */
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
+  /* Count the total number of keystrokes this lifecycle */
+  if (record->event.pressed) {
+      keystroke_count++;
+  }
+
   /* keymap gets first whack, then vimlayer */
   if(!process_record_keymap(keycode, record)) return false;
   if(!process_record_vimlayer(keycode, record)) return false;
@@ -223,6 +247,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case VIM_PASTE:
             if (!record->event.pressed) {
                 SEND_STRING(VIM_PASTE_MACRO);
+            }
+            return false;
+
+        case KEYCOUNT:
+            if (!record->event.pressed) {
+                printint(keystroke_count);
             }
             return false;
 
