@@ -33,9 +33,18 @@ static inline void clear_state_after_idle_timeout(void) {
 }
 
 static inline void printint(uint32_t count) {
+    bool leading_zero = true;
     for (uint32_t i = 1000000000; i > 0; i /= 10) {
-        switch ((count / i) % 10) {
-            case 0: SEND_STRING("0"); break;
+        int digit = (count / i) % 10;
+        if (digit && leading_zero) {
+            leading_zero = false;
+        }
+        switch (digit) {
+            case 0:
+                if (!leading_zero) {
+                    SEND_STRING("0");
+                }
+                break;
             case 1: SEND_STRING("1"); break;
             case 2: SEND_STRING("2"); break;
             case 3: SEND_STRING("3"); break;
