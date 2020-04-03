@@ -142,8 +142,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX,         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MAKE, XXXXXXX, XXXXXXX,     RGB_TOG,     RGB_VAI,  RGB_HUI,
 // |------------------|--------|--------|--------|--------|--------|--------|--------|--------|--------||--------------|--------|--------||
 //
+#define WIN_MODE MAGIC_SWAP_LALT_LGUI
+#define MAC_MODE MAGIC_UNSWAP_LALT_LGUI
 // |---1.25---|---1.25---||---1.25---||--------2.75----------||---1.25---|------2.25--------||--------|--------|--------|--------|--------|
-      XXXXXXX,  XXXXXXX,    XXXXXXX,    XXXXXXX,                XXXXXXX,       XXXXXXX,       XXXXXXX, _______,  RGB_SAD, RGB_VAD, RGB_SAI
+    XXXXXXX,    WIN_MODE,   MAC_MODE,         XXXXXXX,           XXXXXXX,      XXXXXXX,       XXXXXXX, _______,  RGB_SAD, RGB_VAD, RGB_SAI
 // |----------|----------||----------||----------------------||----------|------------------||--------|--------|--------|--------|--------|
   ),
 };
