@@ -21,4 +21,8 @@
 #define MOUSEKEY_WHEEL_TIME_TO_MAX 255
 
 // flags from user/twschum/
-#define TWSCHUM_TAPPING_CTRL_PREFIX 1
+//#define TWSCHUM_TAPPING_CTRL_PREFIX 1
+//#define TWSCHUM_IS_MAC 1
+//#define TWSCHUM_VIM_LAYER 1
+//#define TWSCHUM_NUMPAD_LAYER 1
+#define TWSCHUM_KEYCOUNT 1

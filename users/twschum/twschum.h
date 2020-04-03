@@ -1,7 +1,10 @@
 #pragma once
 #include <stdarg.h>
 #include "quantum.h"
+
+#ifdef TWSCHUM_VIM_LAYER
 #include "xtonhasvim.h"
+#endif
 
 /**************************
  * QMK Features Used
@@ -29,6 +32,11 @@
  * - Flag for handling media keys and other settings between OSX and Win/Unix
  *   without having to include bootmagic
  *
+ * TWSCHUM_NUMPAD_LAYER
+ * - Flag for adding the "numpad" layer
+ *
+ * TWSCHUM_KEYCOUNT
+ * - Flag to adds a feature to count the total number of keystrokes since boot
  **************************
  * Features Wishlist
  **************************
@@ -43,12 +51,15 @@
 /* Each layer gets a color, overwritable per keyboard */
 enum layers_definitions {
     _Base,
+#ifdef TWSCHUM_VIM_LAYER
     _Vim,
+#endif
     _Fn,
     _Nav,
+#ifdef TWSCHUM_NUMPAD_LAYER
     _Num,
+#endif
     _Cfg,
-    _None,
 };
 #ifdef RGBLIGHT_ENABLE
 #define _Base_HSV_ON  HSV_WHITE
@@ -62,25 +73,28 @@ enum layers_definitions {
 #endif
 
 enum extra_keycodes {
+#ifdef TWSCHUM_VIM_LAYER
     TWSCHUM_START = VIM_SAFE_RANGE,
+#else
+    TWSCHUM_START = SAFE_RANGE,
+#endif
     KC_MAKE, // types the make command for this keyboard
 #ifdef TWSCHUM_TAPPING_CTRL_PREFIX
     CTRL_A,
     CTRL_B,
-    EN_CTRL_SHORTCUTS,
 #endif
 #ifdef RGBLIGHT_ENABLE
     TG_LAYER_RGB, // Toggle between standard RGB underglow, and RGB underglow to do layer indication
     TG_L0_RGB, // Toggle color on or off of layer0
 #endif
-    SALT_CMD, // macro
     LESS_PD, // macro
     CODE_PASTE, // macro
     VIM_PASTE, // macro
+#ifdef TWSCHUM_KEYCOUNT
     KEYCOUNT, // prints out how many keystrokes have happened
+#endif
     KEYMAP_SAFE_RANGE, // range to start for the keymap
 };
-#define SALT_CMD_MACRO "sudo salt \\* cmd.run ''"SS_TAP(X_LEFT)
 #define LESS_PD_MACRO "sudo less /pipedream/cache/"
 // TODO mac vs linux
 #define CODE_PASTE_MACRO SS_LSFT("\n")"```"SS_LSFT("\n")SS_LGUI("v")SS_LSFT("\n")"```"
@@ -127,8 +141,10 @@ static inline void send_n_keys(int n, ...) {
 #define repeat_send_keys(n, ...) {for (int i=0; i < n; ++i) {send_keys(__VA_ARGS__);}}
 
 /* State functions for nested c-a & c-b leader keystrokes */
+#ifdef TWSCHUM_TAPPING_CTRL_PREFIX
 struct Tapping_ctrl_key_t {
     bool down;
     int8_t count;
     const uint16_t keycode;
 };
+#endif
