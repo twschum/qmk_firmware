@@ -2,12 +2,12 @@
 MCU = STM32F303
 
 # LED Configuration
-LED_MATRIX_ENABLE = IS31FL3731
+LED_MATRIX_ENABLE = yes
+LED_MATRIX_DRIVER = IS31FL3731
 
 # Build Options
 #   comment out to disable the options.
 #
-BACKLIGHT_ENABLE = yes
 BOOTMAGIC_ENABLE = yes	# Virtual DIP switch configuration
 ## (Note that for BOOTMAGIC on Teensy LC you have to use a custom .ld script.)
 MOUSEKEY_ENABLE = yes	# Mouse keys
@@ -22,4 +22,4 @@ AUDIO_ENABLE = yes
 
 # project specific files
 SRC =	led.c
-LAYOUTS += 66_ansi
+LAYOUTS = 66_ansi
