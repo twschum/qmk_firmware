@@ -28,10 +28,6 @@
  * TWSCHUM_VIM_LAYER
  * - Fork of xtonhasvim, adding vim-emulation
  *
- * TWSCHUM_IS_MAC
- * - Flag for handling media keys and other settings between OSX and Win/Unix
- *   without having to include bootmagic
- *
  * TWSCHUM_NUMPAD_LAYER
  * - Flag for adding the "numpad" layer
  *
@@ -93,6 +89,11 @@ enum extra_keycodes {
 #ifdef TWSCHUM_KEYCOUNT
     KEYCOUNT, // prints out how many keystrokes have happened
 #endif
+    // Handle our own superlight version of OS switching (swapping LALT/LGUI)
+    SWAP_MODE, // Toggles mac/win modes
+    OPT_WIN, // OPT in mac mode, WIN otherwise
+    CMD_ALT, // CMD in mac mode, ALT otherwise
+    // TODO media versions
     KEYMAP_SAFE_RANGE, // range to start for the keymap
 };
 #define LESS_PD_MACRO "sudo less /pipedream/cache/"

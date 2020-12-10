@@ -113,6 +113,9 @@ static inline bool tap_ctrl_other_pressed(void) {
 }
 #endif /* TWSCHUM_TAPPING_CTRL_PREFIX */
 
+// For mode swap, stats in mac mode by default
+static bool mac_mode = true;
+
 
 /* Use RGB underglow to indicate layer
  * https://docs.qmk.fm/reference/customizing-functionality
@@ -257,6 +260,44 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
         #endif
+
+        case SWAP_MODE:
+            if (!record->event.pressed) {
+                mac_mode = !mac_mode;
+            }
+            return false;
+
+        case OPT_WIN:
+            if (record->event.pressed) {
+                if (mac_mode) {
+                    register_code(KC_LGUI);
+                } else {
+                    register_code(KC_LALT);
+                }
+            } else {
+                if (mac_mode) {
+                    unregister_code(KC_LGUI);
+                } else {
+                    unregister_code(KC_LALT);
+                }
+            }
+            return false;
+
+        case CMD_ALT:
+            if (record->event.pressed) {
+                if (mac_mode) {
+                    register_code(KC_LALT);
+                } else {
+                    register_code(KC_LGUI);
+                }
+            } else {
+                if (mac_mode) {
+                    unregister_code(KC_LGUI);
+                } else {
+                    unregister_code(KC_LALT);
+                }
+            }
+            return false;
 
         #ifdef TWSCHUM_TAPPING_CTRL_PREFIX
         case CTRL_A:

@@ -71,6 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       MO(_Fn),  KC_LALT,    KC_LGUI,         KC_SPC,           TT(_Nav),      MO(_Fn),        NUM_ALT, TT(_Cfg), KC_LEFT, KC_DOWN, KC_RGHT
 // |----------|----------||----------||----------------------||----------|------------------||--------|--------|--------|--------|--------|
   ),
+
 #ifdef TWSCHUM_VIM_LAYER
   /* vim mode */
   LAYOUT_b_4_10(
